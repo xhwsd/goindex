@@ -231,8 +231,8 @@ function file_code(path){
 </div>
 <a href="${href}" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
 
-<script src="https://cdn.staticfile.org/ace/1.4.7/ace.js"></script>
-<script src="https://cdn.staticfile.org/ace/1.4.7/ext-language_tools.js"></script>
+<script src="https://cdn.staticfile.org/ace/1.4.9/ace.min.js"></script>
+<script src="https://cdn.staticfile.org/ace/1.4.9/ext-language_tools.min.js"></script>
 	`;
 	$('#content').html(content);
 	
