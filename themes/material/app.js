@@ -214,9 +214,9 @@ function file_code(path){
 		"java":"java",
 		"js":"javascript",
 		"json":"json",
-		"txt":"Text",
+		"txt":"text",
 		"sh":"sh",
-		"md":"Markdown",	
+		"md":"markdown",	
 	};
 	var name = path.split('/').pop();
 	var ext = name.split('.').pop();
@@ -238,7 +238,7 @@ function file_code(path){
 	
 	$.get(path, function(data){
 		$('#editor').html($('<div/>').text(data).html());
-		var code_type = "Text";
+		var code_type = "text";
 		if(type[ext] != undefined ){
 			code_type = type[ext];
 		}
