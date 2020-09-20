@@ -245,7 +245,8 @@ function file_code(path){
 		var editor = ace.edit("editor");
 	    editor.setTheme("ace/theme/ambiance");
 	    editor.setFontSize(18);
-	    editor.session.setMode("ace/mode/"+code_type);
+	    // 模式需要小写字母
+	    editor.session.setMode("ace/mode/" + code_type);
 	    
 	    //Autocompletion
 	    editor.setOptions({
