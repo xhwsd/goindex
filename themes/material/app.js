@@ -204,7 +204,7 @@ function file(path) {
 }
 
 // 文件展示 |html|php|css|go|java|js|json|txt|sh|md|
-function file_code(path){
+function file_code(path) {
 	var type = {
 		"html":"html",
 		"php":"php",
