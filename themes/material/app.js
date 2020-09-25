@@ -219,7 +219,7 @@ function file_code(path) {
 	var href = window.location.origin + path;
 	var content = `
 <div class="mdui-container">
-<pre id="editor" ></pre>
+<pre id="editor"></pre>
 </div>
 <div class="mdui-textfield">
 	<label class="mdui-textfield-label">下载地址</label>
