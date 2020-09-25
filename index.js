@@ -79,7 +79,6 @@ async function handleRequest(request) {
 	}
 }
 
-
 async function apiRequest(request) {
 	let url = new URL(request.url);
 	let path = url.pathname;
@@ -124,7 +123,7 @@ class googleDrive {
 		this.accessToken();
 	}
 
-	async down(id, range='') {
+	async down(id, range = '') {
 		let url = `https://www.googleapis.com/drive/v3/files/${id}?alt=media`;
 		let requestOption = await this.requestOption();
 		requestOption.headers['Range'] = range;
@@ -147,10 +146,10 @@ class googleDrive {
 		let parent = await this.findPathId(dir);
 		console.log(parent);
 		let url = 'https://www.googleapis.com/drive/v3/files';
-		let params = {'includeItemsFromAllDrives':true,'supportsAllDrives':true};
-		params.q = `'${parent}' in parents and name = '${name}' andtrashed = false`;
-		params.fields = "files(id, name, mimeType, size ,createdTime, modifiedTime, iconLink, thumbnailLink, shortcutDetails)";
-		url += '?'+ this.enQuery(params);
+		let params = {'includeItemsFromAllDrives':true, 'supportsAllDrives':true};
+		params.q = `'${parent}' in parents and name = '${name}' and trashed = false`;
+		params.fields = "files(id, name, mimeType, size, createdTime, modifiedTime, iconLink, thumbnailLink, shortcutDetails)";
+		url += '?' + this.enQuery(params);
 		let requestOption = await this.requestOption();
 		let response = await fetch(url, requestOption);
 		let obj = await response.json();
@@ -211,9 +210,10 @@ class googleDrive {
 		let pageToken;
 		let obj;
 		let params = {'includeItemsFromAllDrives':true, 'supportsAllDrives':true};
-		params.q = `'${parent}' in parents and trashed = false AND name !='.password'`;
-		params.orderBy = 'folder,name,modifiedTime desc';
-		params.fields = "nextPageToken, files(id, name, mimeType, size , modifiedTime, shortcutDetails)";
+        // 限制搜索文件 https://developers.google.cn/drive/api/v3/reference/files/list
+		params.q = `'${parent}' in parents and trashed = false and name != '.password' and starred = false`;
+		params.orderBy = 'folder, name, modifiedTime desc';
+		params.fields = "nextPageToken, files(id, name, mimeType, size, modifiedTime, shortcutDetails)";
 		params.pageSize = 1000;
 
 		do {
