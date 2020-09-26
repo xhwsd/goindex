@@ -202,6 +202,7 @@ function file(path) {
 
 // 文件展示 |html|php|css|go|java|js|json|txt|sh|md|
 function file_code(path) {
+	// 注意类型需要小写字母
 	var type = {
 		"html":"html",
 		"php":"php",
@@ -227,22 +228,21 @@ function file_code(path) {
 </div>
 <a href="${href}" class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent"><i class="mdui-icon material-icons">file_download</i></a>
 
-<script src="https://cdn.staticfile.org/ace/1.4.8/ace.min.js"></script>
-<script src="https://cdn.staticfile.org/ace/1.4.8/ext-language_tools.min.js"></script>
+<script src="https://cdn.staticfile.org/ace/1.4.7/ace.js"></script>
+<script src="https://cdn.staticfile.org/ace/1.4.7/ext-language_tools.js"></script>
 	`;
 	$('#content').html(content);
 	
 	$.get(path, function(data) {
 		$('#editor').html($('<div/>').text(data).html());
 		var code_type = "text";
-		if (type[ext] != undefined ) {
+		if (type[ext] != undefined) {
 			code_type = type[ext];
 		}
+		ace.config.set("basePath", "https://cdn.staticfile.org/ace/1.4.7");
 		var editor = ace.edit("editor");
-		ace.config.set("basePath", "https://cdn.staticfile.org/ace/1.4.8");
 		editor.setTheme("ace/theme/ambiance");
 		editor.setFontSize(18);
-		// 模式需要小写字母
 		editor.session.setMode("ace/mode/" + code_type);
 		
 		// Autocompletion
@@ -304,7 +304,6 @@ function file_audio(path) {
 	`;
 	$('#content').html(content);
 }
-
 
 // 图片展示
 function file_image(path) {
